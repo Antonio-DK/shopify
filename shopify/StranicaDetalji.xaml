@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="shopify.StranicaDetalji"
+             Title="Detalji proizvoda">
+    <ScrollView>
+        <StackLayout Padding="10" Spacing="10">
+            <Button Text="Home" 
+              Clicked="OnHomeButtonClicked"
+              HorizontalOptions="Start" 
+              VerticalOptions="Start"
+              BackgroundColor="#009688"/>
+            <Image x:Name="imgProizvod" HeightRequest="300" Aspect="AspectFit" HorizontalOptions="Center"/>
+            <Label x:Name="lblNaziv" FontAttributes="Bold" FontSize="28" HorizontalTextAlignment="Center"/>
+            <Label x:Name="lblOpis" FontSize="16" HorizontalTextAlignment="Center" />
+            <Label x:Name="lblCijena" FontSize="22" TextColor="Green" HorizontalTextAlignment="Center"/>
+            <Button Text="Dodaj u Košaricu" BackgroundColor="#009688" TextColor="White" Clicked="BtnDodajUKosaricu_Clicked" />
+            <Label Text="Povezani proizvodi:" FontAttributes="Bold" Margin="0,20,0,0" />
+            <CollectionView x:Name="cvPovezaniProizvodi" ItemsSource="{Binding PovezaniProizvodi}" SelectionMode="Single" SelectionChanged="CvPovezani_SelectionChanged">
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout Orientation="Horizontal" />
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame Padding="5" Margin="5" CornerRadius="8" BackgroundColor="WhiteSmoke" WidthRequest="150" HeightRequest="150">
+                            <StackLayout>
+                                <Image Source="{Binding SlikaUrl}" Aspect="AspectFill" HeightRequest="100"/>
+                                <Label Text="{Binding Naziv}" HorizontalOptions="Center" FontSize="14"/>
+                                <Label Text="{Binding Cijena, StringFormat='{0:N2} €'}" HorizontalOptions="Center" TextColor="Green" FontSize="14"/>
+                            </StackLayout>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

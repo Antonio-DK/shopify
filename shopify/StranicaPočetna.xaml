@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="shopify.StranicaPocetna"
+             Title="VTSportSensor">
+    <ScrollView>
+        <StackLayout Padding="10" Spacing="10">
+            <Frame BackgroundColor="Gray" CornerRadius="5" Padding="5">
+                <Label Text="50% POPUSTA" TextColor="White" FontAttributes="Bold" HorizontalOptions="Center"/>
+            </Frame>
+            <SearchBar x:Name="searchBar" Placeholder="Pretraži proizvode" TextChanged="SearchBar_TextChanged"/>
+            <Button Text="Sortiraj" BackgroundColor="#007ACC" TextColor="White" Clicked="OnSortClicked"/>
+            <CollectionView x:Name="cvProizvodi" ItemsSource="{Binding Proizvodi}" SelectionMode="Single" SelectionChanged="CvProizvodi_SelectionChanged">
+                <CollectionView.ItemsLayout>
+                    <GridItemsLayout Orientation="Vertical" Span="2"/>
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame CornerRadius="10" Padding="10" BackgroundColor="White" Margin="5">
+                            <StackLayout>
+                                <Image Source="{Binding SlikaUrl}" Aspect="AspectFill" HeightRequest="100" WidthRequest="100"/>
+                                <Label Text="{Binding Naziv}" FontAttributes="Bold" HorizontalTextAlignment="Center"/>
+                                <Label Text="{Binding Cijena, StringFormat='{}{0:N2} €'}" HorizontalTextAlignment="Center" TextColor="Green"/>
+                            </StackLayout>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+            <Button Text="Košarica" BackgroundColor="#E91E63" TextColor="White" Clicked="BtnKosarica_Clicked"/>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>
